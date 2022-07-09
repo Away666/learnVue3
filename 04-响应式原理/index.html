@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let person = {
+      name: "张三",
+      age: 18
+    }
+
+    // 模拟vue2的响应式
+    let p = {}
+    /*Object.defineProperty(p, 'name', {
+      configurable: false, // 表示能否通过 delete 删除属性、能否修改属性的特性，或者将属性修改为访问器属性
+      get() {
+        return person.name
+      },
+      set(value) {
+        person.name = value
+      }
+    })
+
+    Object.defineProperty(p, 'age', {
+      get() {
+        return person.age
+      },
+      set(value) {
+        person.age = value
+      }
+    })*/
+
+    // 模拟vue3的响应式
+    // const p = new Proxy(person, {
+    //   get(target, propName) {
+    //     console.log(`有人访问了我的${propName}属性`);
+    //     //return target[propName]
+    //     return Reflect.get(target, propName)
+    //   },
+    //   set(target, propName, value) {
+    //     console.log(`有人修改了我的${propName}属性，去更新页面吧`);
+    //     //return target[propName] = value
+    //     return Reflect.set(target, propName, value)
+    //   },
+    //   deleteProperty(target, propName) {
+    //     console.log(`有人删除了我的${propName}属性，去更新页面吧`);
+    //     //return delete target[propName]
+    //     return Reflect.deleteProperty(target, propName)
+    //   }
+    // })
+
+    // Object.defineProperty  这样添加相同的属性会报错  可以使用try catch去捕获错误
+    /*try {
+      Object.defineProperty(person, 'sex', {
+        get() {
+          return '男'
+        }
+      })
+      Object.defineProperty(person, 'sex', {
+        get() {
+          return '女'
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }*/
+
+    // 通过Reflect.defineProperty  这样添加相同的属性不会报错
+    /*const x1 = Reflect.defineProperty(person, 'sex', {
+      get() {
+        return '男'
+      }
+    })
+    console.log(x1);
+    const x2 = Reflect.defineProperty(person, 'sex', {
+      get() {
+        return '女'
+      }
+    })
+    console.log(x2);*/
+  </script>
+</body>
+
+</html>
